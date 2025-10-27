@@ -39,7 +39,7 @@ This will start the **shell** application (the host) in development mode.
 ## 🌐 Access the Application
 
 Once both are running, open your browser and go to:  
-👉 [http://localhost:5001](http://localhost:5001)
+👉 [http://localhost:5000](http://localhost:5000)
 
 You should see the remote module (`ciso`) loaded into the host (`shell`).
 
