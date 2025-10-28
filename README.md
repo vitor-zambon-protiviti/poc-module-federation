@@ -23,6 +23,20 @@ The `ciso` app will be available at:
 
 ### 2️⃣ Run the **host app** (`shell`)
 
+#### ⚙️ Shell Environment Configuration
+
+Create a `.env` file in the root of the `shell` project with the following variables:
+
+```env
+VITE_KEYCLOAK_URL='http://localhost:8081'
+VITE_KEYCLOAK_REALM='protiviti'
+VITE_KEYCLOAK_CLIENT_ID='auth-app'
+```
+
+These variables are used by the Keycloak integration to handle authentication in the host app.
+
+---
+
 In a new terminal:
 
 ```bash
