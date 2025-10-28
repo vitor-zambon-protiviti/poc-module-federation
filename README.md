@@ -50,6 +50,8 @@ You should see the remote module (`ciso`) loaded into the host (`shell`).
 - `shell` acts as the **host** consuming the remote components dynamically.
 - Ensure both apps are running for the federation to work properly.
 - This setup uses **Vite Plugin Federation** under the hood.
+- `shell` uses **'check-sso'**, which means it will **check for an existing Keycloak session** without forcing a login. To test login manually, you can access the Keycloak account console: [http://localhost:8081/realms/protiviti/account](http://localhost:8081/realms/protiviti/account)
+- `ciso` uses **'login-required'**, which means it will **automatically redirect to Keycloak login** if the user is not authenticated.
 
 ---
 
