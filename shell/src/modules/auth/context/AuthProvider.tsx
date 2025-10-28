@@ -1,20 +1,18 @@
-// src/context/AuthProvider.tsx
 import React, { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { initKeycloak, keycloak } from "../services/keycloak";
 import type { KeycloakUser } from "../types";
 
-// Tipagem para as opções do AuthProvider
 interface AuthProviderProps {
   children: React.ReactNode;
-  onLoad?: "check-sso" | "login-required"; // valor padrão será check-sso
+  onLoad?: "check-sso" | "login-required";
 }
 
 let initializing = false;
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({
   children,
-  onLoad = "check-sso", // padrão
+  onLoad = "check-sso",
 }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [profile, setProfile] = useState<KeycloakUser | null>(null);
@@ -26,7 +24,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
     (async () => {
       try {
-        await initKeycloak(onLoad); // passa o tipo recebido como prop
+        await initKeycloak(onLoad);
 
         const isAuthenticated = keycloak.authenticated ?? false;
         setAuthenticated(isAuthenticated);
