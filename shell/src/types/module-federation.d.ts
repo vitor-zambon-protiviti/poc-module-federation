@@ -1,4 +1,4 @@
 declare module "ciso/Main" {
-  const RemoteApp: React.ComponentType;
-  export default RemoteApp;
+  const CisoApp: React.ComponentType;
+  export default CisoApp;
 }

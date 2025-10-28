@@ -1,5 +1,6 @@
 import { BrowserRouter, useRoutes, Link } from "react-router-dom";
 import { routes } from "./routes";
+import { useAuth } from "shell/auth";
 
 function RemoteApp() {
   const element = useRoutes(routes);
@@ -35,6 +36,19 @@ function AppContent() {
 }
 
 export default function App() {
+  const { authenticated, loading } = useAuth();
+
+  if (loading) return <div>Carregando login...</div>;
+
+  if(!authenticated) {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h2>Access Denied</h2>
+        <p>You must be logged in to access this application.</p>
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
       <AppContent />

@@ -1,6 +1,8 @@
 import { lazy, Suspense, Component } from "react";
 import type { ReactNode } from "react";
 import { BrowserRouter, useRoutes, Link } from "react-router-dom";
+import { useAuth } from "./modules/auth";
+import { keycloak } from "./modules/auth/services/keycloak";
 
 // Error Boundary Component
 class RemoteErrorBoundary extends Component<
@@ -55,6 +57,19 @@ function ShellApp() {
 }
 
 export default function App() {
+  const { authenticated, loading } = useAuth();
+
+  if (loading) return <div>Carregando login...</div>;
+
+  if(!authenticated) {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h2>Access Denied</h2>
+        <p>You must be logged in to access this application.</p>
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
       <div style={{ display: "flex", height: "100vh" }}>
@@ -62,7 +77,9 @@ export default function App() {
           width: "250px", 
           backgroundColor: "#f5f5f5", 
           padding: "20px",
-          borderRight: "1px solid #ddd"
+          borderRight: "1px solid #ddd",
+          display: "flex",
+          flexDirection: "column"
         }}>
           <h3>Navigation</h3>
           <ul style={{ listStyle: "none", padding: 0 }}>
@@ -72,6 +89,12 @@ export default function App() {
               </Link>
             </li>
           </ul>
+            {/* Logout button */}
+            <div style={{ marginTop: "auto", paddingTop: "20px" }}>
+              <button onClick={() => keycloak.logout()} style={{ width: "100%" }}>
+                Logout
+              </button>
+            </div>
         </nav>
         
         <main style={{ flex: 1, padding: "20px" }}>

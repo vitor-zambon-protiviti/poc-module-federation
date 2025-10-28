@@ -13,8 +13,7 @@ Follow the steps below to run the POC locally.
 ```bash
 cd ciso
 npm install
-npm run build
-npm run preview -- --port=5001
+npm run build:preview
 ```
 
 The `ciso` app will be available at:  
@@ -29,7 +28,7 @@ In a new terminal:
 ```bash
 cd shell
 npm install
-npm run dev
+npm run build:preview
 ```
 
 This will start the **shell** application (the host) in development mode.
@@ -56,8 +55,6 @@ You should see the remote module (`ciso`) loaded into the host (`shell`).
 
 ## 🧹 Common Commands
 
-| Command           | Description                         |
-| ----------------- | ----------------------------------- |
-| `npm run dev`     | Starts the app in development mode  |
-| `npm run build`   | Builds the app for production       |
-| `npm run preview` | Serves the production build locally |
+| Command                 | Description                 |
+| ----------------------- | --------------------------- |
+| `npm run build:preview` | Builds and starts a preview |

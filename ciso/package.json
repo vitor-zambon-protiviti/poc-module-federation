@@ -1,5 +1,5 @@
 {
-  "name": "whatever",
+  "name": "ciso",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:preview": "vite build && vite preview --port 5001"
   },
   "dependencies": {
     "@module-federation/vite": "^1.8.1",
     "@tailwindcss/vite": "^4.1.16",
+    "keycloak-js": "^26.2.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4",

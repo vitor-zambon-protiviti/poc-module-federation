@@ -5,30 +5,29 @@ import path from 'path';
 import { federation } from '@module-federation/vite';
 
 export default defineConfig({
-  base: '/',
+  base: './', //importante: para que seja carregado corretamente no shell
   plugins: [
     react(),
     tailwindcss(),
     federation({
       name: 'ciso',
       filename: 'remoteEntry.js',
+      remotes: {
+        shell: {
+          type: "module",
+          name: "shell",
+          entry: "http://localhost:5000/remoteEntry.js",
+        }
+      },
       exposes: {
         './Main': './src/App.jsx'
       },
-      shared: ['react', 'react-dom']
+      shared: ['react', 'react-dom', 'keycloak-js'],
     })
   ],
   build: {
     target: 'esnext',
-    minify: false,
-    outDir: 'build',
-    rollupOptions: {
-      output: {
-        entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
-    }
+    minify: true,
   },
   resolve: {
     alias: {

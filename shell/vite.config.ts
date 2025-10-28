@@ -10,6 +10,7 @@ export default defineConfig({
     tailwindcss(),
     federation({
       name: 'shell',
+      filename: 'remoteEntry.js',
       remotes: {
         ciso: {
           type: "module",
@@ -17,7 +18,10 @@ export default defineConfig({
           entry: "http://localhost:5001/remoteEntry.js",
         }
       },
-      shared: ['react', 'react-dom'],
+      exposes: {
+        './auth': './src/modules/auth/index.ts',
+      },
+      shared: ['react', 'react-dom', 'keycloak-js'],
     }),
   ],
   resolve: {
