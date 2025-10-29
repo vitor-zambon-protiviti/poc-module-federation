@@ -16,13 +16,14 @@ export default defineConfig({
         shell: {
           type: "module",
           name: "shell",
-          entry: "http://localhost:5000/remoteEntry.js",
+          entry: "http://localhost:5000/remoteEntry.js"
         }
       },
       exposes: {
         './Main': './src/App.jsx'
       },
-      shared: ['react', 'react-dom', 'keycloak-js'],
+      shared: ['react', 'react-dom', 'keycloak-js']
+
     })
   ],
   build: {
