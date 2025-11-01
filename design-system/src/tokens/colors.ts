@@ -12,4 +12,5 @@ export const colors = {
     DEFAULT: "hsl(var(--secondary))",
     foreground: "hsl(var(--secondary-foreground))",
   },
+  'brand-gemini': '#33FF57', // A distinct, non-default color
 };

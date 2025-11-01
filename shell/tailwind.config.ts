@@ -1,4 +1,4 @@
-import { preset } from '../../../design-system/tailwind.config';
+import { preset } from '@protiviti/design-system';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -7,7 +7,7 @@ const config: Config = {
   content: [
     './index.html',
     './src/**/*.{ts,tsx,js,jsx}',
-    '../design-system/src/**/*.{ts,tsx,js,jsx,css}',
+
   ],
 };
 

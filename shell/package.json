@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@module-federation/vite": "^1.8.1",
+    "@protiviti/design-system": "file:../design-system/protiviti-design-system-1.0.0.tgz",
     "@tailwindcss/vite": "^4.1.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

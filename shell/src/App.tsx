@@ -1,65 +1,12 @@
-import { lazy, Suspense, Component } from "react";
-import type { ReactNode } from "react";
+import { Suspense } from "react";
 import { BrowserRouter, useRoutes, Link } from "react-router-dom";
 import { useAuth } from "./modules/auth";
 import { keycloak } from "./modules/auth/services/keycloak";
-
-// Error Boundary Component
-class RemoteErrorBoundary extends Component<
-  { children: ReactNode },
-  { hasError: boolean }
-> {
-  constructor(props: { children: ReactNode }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(): { hasError: boolean } {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error: Error) {
-    console.error("Remote module failed to load:", error);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div style={{ padding: "20px", textAlign: "center" }}>
-          <h2>Service Unavailable</h2>
-          <p>The remote module is currently unavailable. Please try again later.</p>
-        </div>
-      );
-    }
-
-    return this.props.children;
-  }
-}
-
-const Ciso = lazy(() => 
-  import("ciso/Main")
-  .catch(() => ({
-    default: () => (
-      <div style={{ padding: "20px", textAlign: "center" }}>
-        <h2>Service Unavailable</h2>
-        <p>The CISO module is currently unavailable. Please try again later.</p>
-      </div>
-    )
-  }))
-);
-
-const routes = [
-  { path: "/ciso/*", element: <Ciso /> },
-];
+import RemoteErrorBoundary from "./lib/components/remote-error";
+import routes from "./routes";
 
 function ShellApp() {
   const element = useRoutes(routes);
-
-  try {
-    import("ciso/index.css");
-  } catch {
-    console.warn("CISO styles not found");
-  }
 
   return element;
 }
