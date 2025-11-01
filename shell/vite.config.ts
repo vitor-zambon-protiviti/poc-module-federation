@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite'; // Import tailwindcss plugin
 import path from 'path';
 import { federation } from '@module-federation/vite';
 
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    tailwindcss(), // Add tailwindcss plugin
     federation({
       name: 'shell',
       filename: 'remoteEntry.js',
@@ -19,7 +19,7 @@ export default defineConfig({
         }
       },
       exposes: {
-        './auth': './src/modules/auth/index.ts',
+        './auth': './src/modules/auth/index.ts'
       },
       shared: ['react', 'react-dom', 'keycloak-js'],
     }),
@@ -27,6 +27,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@protiviti/design-system": path.resolve(__dirname, "../design-system/src"),
     },
   },
   server: { port: 5000 },

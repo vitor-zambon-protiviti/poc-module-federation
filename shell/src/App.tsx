@@ -37,7 +37,8 @@ class RemoteErrorBoundary extends Component<
 }
 
 const Ciso = lazy(() => 
-  import("ciso/Main").catch(() => ({
+  import("ciso/Main")
+  .catch(() => ({
     default: () => (
       <div style={{ padding: "20px", textAlign: "center" }}>
         <h2>Service Unavailable</h2>
@@ -53,6 +54,13 @@ const routes = [
 
 function ShellApp() {
   const element = useRoutes(routes);
+
+  try {
+    import("ciso/index.css");
+  } catch {
+    console.warn("CISO styles not found");
+  }
+
   return element;
 }
 
